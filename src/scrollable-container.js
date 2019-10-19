@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
 
-import PAGES from "constants/apps/pages";
 import { MainContainer } from "./style";
 
 const ONE_PAGE_HEIGHT_PROPERTY = document.documentElement.scrollHeight;
@@ -9,11 +7,10 @@ const ONE_PAGE_WIDTH_PROPERTY = document.documentElement.scrollWidth;
 const DOWN = "DOWN";
 const UP = "UP";
 
-const ScrollableContainer = ({ children, location, history }) => {
+const ScrollableContainer = ({ children }) => {
   const [isScrolling, setIsScrolling] = useState(false);
-  const pathname = location.pathname.substring(1);
-  const page = PAGES[pathname] || PAGES["home"];
-  const scrollHeight = page.pageNumber * -ONE_PAGE_HEIGHT_PROPERTY;
+  const [page, setPage] = useState(0);
+  const scrollHeight = page * -ONE_PAGE_HEIGHT_PROPERTY;
 
   const scrollPage = ({ clientX, clientY, deltaY }) => {
     if (isUseOnePageScroll(clientX, clientY)) {
@@ -42,10 +39,10 @@ const ScrollableContainer = ({ children, location, history }) => {
     ((yAxis % ONE_PAGE_HEIGHT_PROPERTY) * 100) / ONE_PAGE_HEIGHT_PROPERTY;
 
   const handleUpdateCurrentPage = (direction, page) => {
-    if (direction === UP && page.pageNumber !== 0)
-      history.push({ pathname: page.prevPage });
-    else if (direction === DOWN && page.pageNumber !== 4)
-      history.push({ pathname: page.nextPage });
+    if (direction === UP && page !== 0)
+      setPage(page--);
+    else if (direction === DOWN && page !== 4)
+      setPage(page++);
   };
 
   return (
@@ -55,4 +52,4 @@ const ScrollableContainer = ({ children, location, history }) => {
   );
 };
 
-export default withRouter(ScrollableContainer);
+export default ScrollableContainer;
