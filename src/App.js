@@ -1,8 +1,7 @@
 import React from 'react';
-import './App.css';
-import ScrollableContainer from './scrollable-container';
-import { PageContainer, PageContent } from './style'
 
+import ScrollableContainer from './scrollable-container';
+import { PageContainer, PageContent, GlobalStyle } from './style'
 
 const PAGE = [
   <div>Tes 1</div>,
@@ -12,7 +11,8 @@ const PAGE = [
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
+      <GlobalStyle />
       <ScrollableContainer>
         {PAGE.map((p, index) => (
           <PageContainer key={index}>
@@ -20,7 +20,7 @@ function App() {
           </PageContainer>
         ))}
       </ScrollableContainer>
-    </div>
+    </React.Fragment>
   );
 }
 
