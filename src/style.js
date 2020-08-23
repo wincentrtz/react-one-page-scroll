@@ -4,12 +4,13 @@ export const MainContainer = styled.div`
   height: 100%;
   position: relative;
   touch-action: none;
-  transform: translate(0px, ${props => props.scrollHeight}px);
+  transform: translate(0px, ${(props) => props.scrollHeight}px);
   transition: all 1.5s ease;
 `;
 
 export const PageContainer = styled.div`
   display: table-row;
+  background: yellow;
 `;
 
 export const PageContent = styled.div`
