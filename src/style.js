@@ -10,7 +10,6 @@ export const MainContainer = styled.div`
 
 export const PageContainer = styled.div`
   display: table-row;
-  background: yellow;
 `;
 
 export const PageContent = styled.div`

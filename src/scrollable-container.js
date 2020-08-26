@@ -18,6 +18,7 @@ const ScrollableContainer = ({ children }) => {
 
   const scrollPage = ({ deltaY }) => {
     if (!isScrolling) {
+      console.log(scrollHeight);
       setIsScrolling(true);
       const direction = deltaY < 0 ? UP : DOWN;
       const isPageChanged = handleUpdateCurrentPage(direction, page);
